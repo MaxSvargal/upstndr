@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./app/",
+    "esModuleInterop": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "target": "es5"
+  },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "*.test.ts"
+  ],
+  "include": [
+    "./app/**/*"
+  ]
+}
