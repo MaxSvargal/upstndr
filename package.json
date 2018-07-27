@@ -4,14 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack --config=./webpack/development.config.js",
-    "serv": "ts-node ./server"
+    "dev": "NODE_PATH=./app NODE_ENV=development ts-node ./server",
+    "prod": "NODE_ENV=production ts-node ./server"
   },
   "dependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
     "@types/debug": "^0.0.30",
     "@types/koa": "^2.0.46",
-    "@types/koa-mount": "^3.0.1",
     "@types/koa-router": "^7.0.30",
     "@types/koa-static-cache": "^5.1.0",
     "@types/koa-webpack": "^5.0.1",
@@ -24,7 +23,6 @@
     "clean-webpack-plugin": "^0.1.19",
     "debug": "^3.1.0",
     "koa": "^2.5.2",
-    "koa-mount": "^3.0.0",
     "koa-router": "^7.4.0",
     "koa-static-cache": "^5.1.2",
     "koa-webpack": "^5.1.0",

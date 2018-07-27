@@ -1,7 +1,6 @@
-import React, { Component } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-// import debug from 'debug'
 
 const render = (App: any) =>
   ReactDOM.render((
@@ -11,8 +10,6 @@ const render = (App: any) =>
   ), document.getElementById('app'))
 
 if (module.hot)
-  module.hot.accept('./containers/App', () => {
-    console.log('reloading')
-    render(require('./containers/App').default)
-  })
+  module.hot.accept('./containers/App', () =>
+    render(require('./containers/App').default))
 render(require('./containers/App').default)

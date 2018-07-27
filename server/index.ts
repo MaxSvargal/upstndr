@@ -1,23 +1,10 @@
-import path from 'path'
 import debug from 'debug'
-import Koa, { Middleware } from 'koa'
-import Router from 'koa-router'
-import mount from 'koa-mount'
-import staticCache from 'koa-static-cache'
-import webpack, { Compiler }  from 'webpack'
-import koaWebpack, { Options } from 'koa-webpack'
 
-import initApi from './middlewares/api'
-import react from './middlewares/react'
-import webpackStats from './middlewares/webpackStats'
-
-import config from '../webpack/development.config'
+const { NODE_ENV } = process.env
+const capitalize = (str: string) =>
+  str.charAt(0).toUpperCase() + str.slice(1)
 
 debug.enable('server')
-const log = debug('server')
-const compiler = webpack(config) as Compiler
-const app = new Koa()
-const router = new Router()
 
 console.log(`
 ================= WELCOME TO =================
@@ -28,30 +15,7 @@ console.log(`
 ╚██████╔╝   ██║   ██║  ██║╚██████╔╝██║  ██║██║
  ╚═════╝    ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝
 `)
-log('Building...')
+debug('server')(`${capitalize(NODE_ENV)} building...`)
 
-const initKoaServer = (koaWebpackMiddleware: Middleware) => {
-  initApi(router)
-  app
-    .use(router.routes())
-    .use(router.allowedMethods())
-    .use(koaWebpackMiddleware)
-    .use(webpackStats)
-    .use(react)
-    .use(mount('/', staticCache(path.join(__dirname, '../dist'), { maxAge: 86400000, gzip: true })))
-    .listen(3000)
-
-  log('Ready. Listened on http://localhost:3000')
-}
-
-koaWebpack(<Options>{
-  compiler,
-  config,
-  devMiddleware: {
-    serverSideRender: true,
-    logLevel: 'warn'
-  },
-  hotClient: {
-    logLevel: 'warn'
-  }
-}).then(initKoaServer)
+if (NODE_ENV === 'development') require('./serverDev')
+if (NODE_ENV === 'production') require('./serverProd')

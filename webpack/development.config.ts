@@ -1,6 +1,5 @@
 import path from 'path'
 import { Configuration } from 'webpack'
-import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 export default <Configuration>{
   entry: [
@@ -40,12 +39,6 @@ export default <Configuration>{
     modules: ['node_modules', 'app'],
     extensions: [ '.tsx', '.ts', '.js', '.json' ]
   },
-  plugins: [
-    new CleanWebpackPlugin([ 'dist' ], {
-      root: path.join(__dirname, '..'),
-      verbose: false
-    }),
-  ],
   output: {
     path: path.join(__dirname, '../dist'),
     filename: '[name].[hash].js',
