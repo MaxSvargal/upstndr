@@ -1,8 +1,12 @@
 import React, { PureComponent } from 'react'
 import { compose } from 'redux'
-import saga from './saga'
-import injectSaga from 'utils/injectSaga'
 import { connect } from 'react-redux'
+
+import injectSaga from 'utils/injectSaga'
+import injectReducer from 'utils/injectReducer'
+
+import saga from './saga'
+import reducer from './reducers'
 
 interface Props {
   todos: string[]
@@ -19,8 +23,10 @@ class HomePage extends PureComponent<Props> {
 }
 
 const withSaga = injectSaga({ key: 'home', saga })
-type State = { todos: string[] }
+const withReducer = injectReducer({ key: 'todos', reducer })
+
+type State = { todos: string[] } // move this
 const withConnect = connect((({ todos }: State) => ({ todos })))
 
-export default compose(withSaga, withConnect)(HomePage)
+export default compose(withSaga, withReducer, withConnect)(HomePage)
 

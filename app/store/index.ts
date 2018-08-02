@@ -1,17 +1,10 @@
-import { createStore, combineReducers, applyMiddleware, compose, Reducer, Store as OriginalStore } from 'redux'
-import createSagaMiddleware, { END, Task } from 'redux-saga'
+import { createStore, applyMiddleware, compose, Reducer, Store as OriginalStore } from 'redux'
+import createSagaMiddleware, { Task } from 'redux-saga'
+import { getReducer } from 'utils/reducerInjectors'
 // import { fromJS } from 'immutable'
 
 const sagaMiddleware = createSagaMiddleware()
 
-function todos(state: string[] = [], action: any) {
-  switch (action.type) {
-    case 'ADD_TODO':
-      return [ ...state, action.payload ]
-    default:
-      return state
-  }
-}
 
 export interface Store extends OriginalStore {
   runSaga: typeof sagaMiddleware.run
@@ -41,7 +34,7 @@ export default (initialState: object) => {
     : compose
 
   const store: Store = createStore(
-    combineReducers({ todos }),
+    getReducer(initialState),
     initialState,
     composeEnhancers(...enhancers),
   )
