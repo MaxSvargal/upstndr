@@ -6,7 +6,7 @@ export default class App extends PureComponent {
   render() {
     return (
       <div>
-        <div>WAT</div>
+        <h2>WAT</h2>
         <Switch>
           <Route exact path="/" component={HomePage} />
         </Switch>

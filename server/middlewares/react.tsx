@@ -1,38 +1,52 @@
 import React from 'react'
+import debug from 'debug'
 import { renderToString } from 'react-dom/server'
 import { StaticRouter } from 'react-router'
 import { Context } from 'koa'
 import { Provider } from 'react-redux'
-import configureStore from '../../app/store'
+import { Task } from 'redux-saga'
+import configureStore, { Store } from '../../app/store'
 
 import App from '../../app/containers/App'
 import Html from '../index.html'
 
-import rootSaga from '../../app/containers/Home/saga'
-
 type Assets = { js: string[] }
+type RenderProps = { url: string, context: object, js: string[] }
 
-export default async (ctx: Context, next: () => Promise<any>) => {
-  const { js } = ctx.state.assets as Assets
-  const context = {}
-
-  const store = configureStore({})
-
-  // await store.runSaga(rootSaga).done
-  // debug('server')('sagas complete')
-
-  ctx.body = renderToString(
+const render = ({ url, context, js }: RenderProps) => (store: Store, preloadedState?: object) =>
+  renderToString(
     <Html
       body={
-        <StaticRouter location={ctx.req.url} context={context}>
+        <StaticRouter location={url} context={context}>
           <Provider store={store}>
             <App />
           </Provider>
         </StaticRouter>
       }
       js={js}
+      state={preloadedState}
     />
   )
+
+export default async (ctx: Context, next: () => Promise<any>) => {
+  const { js } = ctx.state.assets as Assets
+  const url = ctx.req.url
+  const context = {}
+  const store = configureStore({})
+  const runRender = render({ url, context, js })
+
+  // Initial render to collect sagas
+  runRender(store)
+
+  debug('server')('Sagas started')
+  await Promise.all((Object as any).values(store.injectedSagas).map(({ task }: { task: Task }) => task.done))
+  debug('server')('Sagas completed')
+
+  // Grab the initial state from store
+  const preloadedState = store.getState()
+
+  // Second render with filled store
+  ctx.body = runRender(store, preloadedState)
 
   await next()
 }

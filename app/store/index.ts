@@ -5,7 +5,6 @@ import createSagaMiddleware, { END, Task } from 'redux-saga'
 const sagaMiddleware = createSagaMiddleware()
 
 function todos(state: string[] = [], action: any) {
-  console.log({ state, action }, )
   switch (action.type) {
     case 'ADD_TODO':
       return [ ...state, action.payload ]
