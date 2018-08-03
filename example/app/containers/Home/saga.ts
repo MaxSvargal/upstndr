@@ -1,5 +1,5 @@
-import { put, fork } from 'redux-saga/effects'
-import { delay } from 'redux-saga'
+import { put, fork } from 'otagai/internals/redux-saga-effects'
+import { delay } from 'otagai/internals/redux-saga'
 
 import { addTodo } from './actions'
 

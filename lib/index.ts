@@ -11,5 +11,5 @@ export {
   injectSaga,
   injectReducer,
   compose,
-  connect
+  connect,
 }
