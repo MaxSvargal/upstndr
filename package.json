@@ -1,5 +1,5 @@
 {
-  "name": "otagai",
+  "name": "upstndr",
   "description": "A non-boilerplate self-contained and ready out of the box framework for develop universal web apps with the best parts of react ecosystem.",
   "version": "0.0.1",
   "main": "lib/index.ts",
@@ -10,7 +10,7 @@
     "prod": "NODE_ENV=production ts-node ./server"
   },
   "bin": {
-    "otagai": "./bin/index.js"
+    "upstndr": "./bin/index.js"
   },
   "files": [
     "bin"
