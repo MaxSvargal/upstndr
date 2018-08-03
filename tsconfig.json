@@ -11,7 +11,10 @@
     "sourceMap": true,
     "target": "es6",
     "pretty": true,
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "paths": {
+      "app": [ "./app" ]
+    }
   },
   "exclude": [
     "dist",

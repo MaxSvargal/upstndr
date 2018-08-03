@@ -3,7 +3,7 @@ import { Configuration } from 'webpack'
 
 export default <Configuration>{
   entry: [
-    path.join(process.cwd(), 'app/index.tsx'),
+    path.join(__dirname, '..', 'app/index.tsx'),
   ],
   devtool: 'source-map',
   mode: 'development',
@@ -36,7 +36,7 @@ export default <Configuration>{
     ]
   },
   resolve: {
-    modules: ['node_modules', 'app'],
+    modules: ['node_modules', path.join(process.cwd(), '/app'), './app' ],
     extensions: [ '.tsx', '.ts', '.js', '.json' ]
   },
   output: {

@@ -1,4 +1,4 @@
-import { Store } from 'store'
+import { Store } from '../store'
 
 const injectSagaFactory = (store: Store) => (
     key: string,

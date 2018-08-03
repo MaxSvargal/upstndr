@@ -1,10 +1,9 @@
 import { createStore, applyMiddleware, compose, Reducer, Store as OriginalStore } from 'redux'
 import createSagaMiddleware, { Task } from 'redux-saga'
-import { getReducer } from 'utils/reducerInjectors'
+import { getReducer } from '../utils/reducerInjectors'
 // import { fromJS } from 'immutable'
 
 const sagaMiddleware = createSagaMiddleware()
-
 
 export interface Store extends OriginalStore {
   runSaga: typeof sagaMiddleware.run

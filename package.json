@@ -1,13 +1,20 @@
 {
   "name": "otagai",
   "description": "A non-boilerplate self-contained and ready out of the box framework for develop universal web apps with the best parts of react ecosystem.",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
+  "main": "lib/index.ts",
+  "author": "MaxSvargal <maxsvargal@gmail.com>",
   "license": "MIT",
   "scripts": {
     "dev": "NODE_PATH=app NODE_ENV=development ts-node ./server",
     "prod": "NODE_ENV=production ts-node ./server"
   },
+  "bin": {
+    "otagai": "./bin/index.js"
+  },
+  "files": [
+    "bin"
+  ],
   "dependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
     "@types/debug": "^0.0.30",
@@ -46,6 +53,7 @@
     "redux-saga": "^0.16.0",
     "ts-loader": "^4.4.2",
     "ts-node": "^7.0.0",
+    "tsconfig-paths": "^3.5.0",
     "typescript": "^3.0.1",
     "webpack": "^4.16.2"
   }
