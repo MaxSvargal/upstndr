@@ -1,9 +1,5 @@
-import React, { PureComponent } from 'react'
-import { compose } from 'redux'
-import { connect } from 'react-redux'
-
-import injectSaga from 'utils/injectSaga'
-import injectReducer from 'utils/injectReducer'
+import React, { PureComponent } from 'otagai/internals/react'
+import { compose, connect, injectSaga, injectReducer } from 'otagai'
 
 import saga from './saga'
 import reducer from './reducers'
@@ -29,4 +25,3 @@ type State = { todos: string[] } // move this
 const withConnect = connect((({ todos }: State) => ({ todos })))
 
 export default compose(withSaga, withReducer, withConnect)(HomePage)
-
