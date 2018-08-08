@@ -1,7 +1,8 @@
-import { BrowserRouter } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
 import configureStore from 'store'
+import createHistory from 'history/createBrowserHistory'
 import React, { ComponentClass } from 'react'
 
 declare global {
@@ -15,13 +16,15 @@ const preloadedState = window.__PRELOADED_STATE__
 // Allow the passed state to be garbage-collected
 delete window.__PRELOADED_STATE__
 
+const history = createHistory()
 const store = configureStore(preloadedState)
 
-const render = (App: ComponentClass) => hydrate(
+const render = (App: ComponentClass) =>
+  hydrate(
     <Provider store={store}>
-      <BrowserRouter>
-        <App/>
-      </BrowserRouter>
+      <ConnectedRouter history={history}>
+        <App />
+      </ConnectedRouter>
     </Provider>
   , document.getElementById('app'))
 
