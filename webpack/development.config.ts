@@ -1,5 +1,5 @@
 import path from 'path'
-import { Configuration } from 'webpack'
+import { Configuration, DefinePlugin } from 'webpack'
 
 export default <Configuration>{
   entry: [
@@ -62,6 +62,14 @@ export default <Configuration>{
   stats: {
     assets: false,
     modules: false
-  }
+  },
+  plugins: [
+    new DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        BROWSER: JSON.stringify('true')
+      },
+    })
+  ]
 }
 
