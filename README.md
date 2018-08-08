@@ -3,12 +3,6 @@
 ---
 It build client bundles with webpack and serve those in development and optimized production mode. It give you an universal server-side rendering and allow you to get an API server in the same app.
 
-## Install
-```
-yarn add upstndr
-```
-
-## Usage
 upstndr use [ducks](https://medium.freecodecamp.org/scaling-your-redux-app-with-ducks-6115955638be) approaches of structuring. It is a feature-first and looks like:
 ```
 container/
@@ -22,8 +16,24 @@ container/
 ├── utils.ts
 ```
 
-You can import all modules from the otagai package that it use internally. There are:
+You can import all modules from the upstndr package that it use internally (e.g. `upstndr/internals/${package}`). Of course you can use it as usual, but some features may work incorrectly.
 
+There are the all internal dependencies:
+- react-redux
+- react-router-dom
+- react-router-redux
+- react
+- redux-saga-effects
+- redux-saga
+- redux
+- reselect
+
+## Install
+```
+yarn add upstndr
+```
+
+## Usage
 
 1. Make `app/containers/App` directory. Add `index.ts` inside, it will be a root container which contains a global application functional
 
@@ -51,9 +61,8 @@ export default class App extends PureComponent {
 2. Let's make a home container in `app/containers/Home` directory. Add `index.ts` which will be loaded when we request a root page `/`. And now we can inject reducers and sagas to our container, specified for this page.
 
 ``` jsx
-import React, { PureComponent, Fragment } from 'react'
-import { injectSaga, injectReducer } from 'otagai'
-import { compose, connect } from 'otagai/redux'
+import React, { PureComponent, Fragment } from 'upstndr/internals/react'
+import { compose, connect, injectSaga, injectReducer } from 'upstndr'
 
 import saga from './sagas'
 import reducer from './reducers'
@@ -91,14 +100,14 @@ export default compose(withSaga, withReducer, withConnect)(HomePage)
 
 `/app/containers/Home/actions.ts`
 ``` typescript
-import { createAction } from 'otagai/redux'
+import { createAction } from 'upstndr'
 
 export const addTodo = createAction('add todo list item', (text: string) => text)
 ```
 
 `/app/containers/Home/reducers.ts`
 ``` typescript
-import { createReducer } from 'otagai/redux'
+import { createReducer } from 'upstndr'
 import { addTodo } from './actions'
 
 export const todoReducer = createReducer({
@@ -109,8 +118,8 @@ export const todoReducer = createReducer({
 
 `/app/containers/Home/sagas.ts`
 ``` typescript
-import { put, fork } from 'redux-saga/effects'
-import { delay } from 'redux-saga'
+import { put, fork } from 'upstndr/internals/redux-saga-effects'
+import { delay } from 'upstndr/internals/redux-saga'
 
 import { addTodo } from './actions'
 
