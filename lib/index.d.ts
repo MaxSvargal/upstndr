@@ -1,4 +1,4 @@
-import * as otagai from './'
+import * as upstndr from './'
 
-export as namespace Otagai
-export = otagai
+export as namespace Upstndr
+export = upstndr
