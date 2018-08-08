@@ -16,7 +16,7 @@ container/
 ├── utils.ts
 ```
 
-You can import all modules from the upstndr package that it use internally (e.g. `upstndr/internals/${package}`). Of course you can use it as usual, but some features may work incorrectly.
+You can import all modules which upstndr use internally from the upstndr package (e.g. `upstndr/internals/${package}`) and don't install any peer dependencies. Of course you can use it as usual, but some features may work incorrectly.
 
 There are the all internal dependencies:
 - react-redux
@@ -38,8 +38,8 @@ yarn add upstndr
 1. Make `app/containers/App` directory. Add `index.ts` inside, it will be a root container which contains a global application functional
 
 ```jsx
-import React, { PureComponent } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React, { PureComponent } from 'upstndr/internals/react'
+import { Switch, Route } from 'upstndr/internals/react-router-dom'
 
 import HomePage from 'containers/Home'
 
