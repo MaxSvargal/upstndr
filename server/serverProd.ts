@@ -18,7 +18,7 @@ webpack(config, (err: Error, stats: Stats) => {
   if (err) throw err
   initApi(router)
   app
-    .use(staticCache(path.join(__dirname, '../dist'), { maxAge: 86400000, gzip: true }))
+    .use(staticCache(path.join(process.cwd(), 'dist'), { maxAge: 86400000, gzip: true }))
     .use(router.routes())
     .use(router.allowedMethods())
     .use(webpackStats(stats))

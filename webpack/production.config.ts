@@ -1,11 +1,12 @@
 import path from 'path'
-import { Configuration } from 'webpack'
+import { Configuration, DefinePlugin } from 'webpack'
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 export default <Configuration>{
   entry: [
-    path.join(process.cwd(), 'app/index.tsx'),
+    path.join(__dirname, '..', 'app/index.tsx'),
   ],
+  devtool: 'source-map',
   mode: 'production',
   module: {
     rules: [
@@ -36,17 +37,23 @@ export default <Configuration>{
     ]
   },
   resolve: {
-    modules: ['node_modules', 'app'],
+    modules: ['node_modules', path.join(process.cwd(), '/app'), './app' ],
     extensions: [ '.tsx', '.ts', '.js', '.json' ]
   },
   plugins: [
     new CleanWebpackPlugin([ 'dist' ], {
-      root: path.join(__dirname, '..'),
+      root: process.cwd(),
       verbose: false
     }),
+    new DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+        BROWSER: JSON.stringify('true')
+      },
+    })
   ],
   output: {
-    path: path.join(__dirname, '../dist'),
+    path: path.join(process.cwd(), 'dist'),
     filename: '[name].[hash].js',
     chunkFilename: '[name].[hash].js',
     publicPath: '/'

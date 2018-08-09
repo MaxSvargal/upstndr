@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
-if (!process.env.NODE_ENV) process.env.NODE_ENV = 'development'
+const [ , , command ] = process.argv
+
+if (!process.env.NODE_ENV) process.env.NODE_ENV = command || 'development'
 
 const fs = require('fs')
 const cwd = process.cwd()
