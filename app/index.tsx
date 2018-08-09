@@ -17,7 +17,7 @@ const preloadedState = window.__PRELOADED_STATE__
 delete window.__PRELOADED_STATE__
 
 const history = createHistory()
-const store = configureStore(preloadedState)
+const store = configureStore(preloadedState, history)
 
 const render = (App: ComponentClass) =>
   hydrate(
