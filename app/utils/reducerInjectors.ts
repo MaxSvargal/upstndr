@@ -12,7 +12,8 @@ export function createReducer(injectedReducers?: { [key: string]: Reducer }) {
 export function getReducer(state: object) {
   // Mock reducers instantly before they will be replaced by real reducers
   // Because we don't know about server state on client side on startup
-  const stateReducers = Object.keys(state).reduce((a, b) => ({ ...a, [b]: () => null as null }), {})
+  const stateReducers = Object.keys(state).reduce((a, b) => ({ ...a, [b]: (a: any) => a || null }), {})
+
   return combineReducers({
     ...stateReducers,
     router: routeReducer,
