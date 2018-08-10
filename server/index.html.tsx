@@ -16,7 +16,7 @@ export default ({ body, js, state }: Props) => (
         } } />
       }
       {js.map(v => (
-        <script key={v} src={v} />
+        <script key={v} src={`/${v}`} />
       ))}
     </body>
   </html>

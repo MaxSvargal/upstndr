@@ -1,12 +1,17 @@
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
+import { connectRouter, routerMiddleware } from 'connected-react-router'
+import { createBrowserHistory, createMemoryHistory } from 'history'
 import { createStore, applyMiddleware, Reducer, Store as OriginalStore } from 'redux'
-import { History } from 'history'
-import { routerMiddleware } from 'react-router-redux'
 import createSagaMiddleware, { Task } from 'redux-saga'
 
 import { getReducer, createReducer } from './utils/reducerInjectors'
 
-const sagaMiddleware = createSagaMiddleware()
+const { BROWSER } = process.env
+
+const sagaMiddleware = createSagaMiddleware({
+  onError: (error: Error) => console.log(error),
+  logger: (level, ...args) => console.log({ level, args })
+})
 
 export interface Store extends OriginalStore {
   runSaga: typeof sagaMiddleware.run
@@ -22,12 +27,16 @@ export interface Store extends OriginalStore {
   }
 }
 
-export default (initialState: object, history?: History) => {
-  const middlewares = [ sagaMiddleware, routerMiddleware(history) ]
+export default (initialState: object, url = '/') => {
+  const history = BROWSER
+    ? createBrowserHistory()
+    : createMemoryHistory({ initialEntries: [ url ] })
+
+  const middlewares = [ routerMiddleware(history), sagaMiddleware ]
   const enhancers = applyMiddleware(...middlewares)
 
   const store: Store = createStore(
-    getReducer(initialState),
+    connectRouter(history)(getReducer(initialState)),
     initialState,
     composeWithDevTools(enhancers),
   )
@@ -42,5 +51,5 @@ export default (initialState: object, history?: History) => {
     })
   }
 
-  return store
+  return { store, history }
 }

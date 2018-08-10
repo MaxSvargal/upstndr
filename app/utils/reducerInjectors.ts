@@ -16,8 +16,8 @@ export function getReducer(state: object) {
   const stateReducers = Object.keys(state).reduce((a, b) => ({ ...a, [b]: (a: any) => a || null }), {})
 
   return combineReducers({
-    ...stateReducers,
     router: routeReducer,
+    ...stateReducers
   })
 }
 
