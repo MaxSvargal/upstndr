@@ -1,5 +1,6 @@
-import { Store } from '../store'
 import { combineReducers, Reducer } from 'redux'
+
+import { Store } from '../configureStore'
 import { routeReducer } from '../containers/App/reducers'
 
 export function createReducer(injectedReducers?: { [key: string]: Reducer }) {

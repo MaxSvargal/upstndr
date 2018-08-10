@@ -1,7 +1,7 @@
 {
   "name": "upstndr",
   "description": "A non-boilerplate self-contained and ready out of the box framework for develop universal web apps with the best parts of react ecosystem.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "lib/index.ts",
   "author": "MaxSvargal <maxsvargal@gmail.com>",
   "license": "MIT",

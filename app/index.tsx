@@ -1,7 +1,7 @@
 import { ConnectedRouter } from 'react-router-redux'
 import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
-import configureStore from 'store'
+import configureStore from './configureStore'
 import createHistory from 'history/createBrowserHistory'
 import React, { ComponentClass } from 'react'
 

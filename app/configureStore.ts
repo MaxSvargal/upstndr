@@ -4,7 +4,7 @@ import { History } from 'history'
 import { routerMiddleware } from 'react-router-redux'
 import createSagaMiddleware, { Task } from 'redux-saga'
 
-import { getReducer, createReducer } from '../utils/reducerInjectors'
+import { getReducer, createReducer } from './utils/reducerInjectors'
 
 const sagaMiddleware = createSagaMiddleware()
 
