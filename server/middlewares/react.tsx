@@ -6,7 +6,7 @@ import { Context } from 'koa'
 import { Provider } from 'react-redux'
 import { Task } from 'redux-saga'
 
-import configureStore, { Store } from '../../app/store'
+import configureStore, { Store } from '../../app/configureStore'
 import Html from '../index.html'
 
 const App = require(process.cwd() + '/app/containers/App').default

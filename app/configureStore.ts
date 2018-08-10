@@ -22,7 +22,7 @@ export interface Store extends OriginalStore {
   }
 }
 
-export default (initialState: object, history: History) => {
+export default (initialState: object, history?: History) => {
   const middlewares = [ sagaMiddleware, routerMiddleware(history) ]
   const enhancers = applyMiddleware(...middlewares)
 
