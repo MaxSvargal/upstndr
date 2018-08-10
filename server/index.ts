@@ -1,6 +1,9 @@
 import debug from 'debug'
 
+const { version } = require('../package.json')
+
 const { NODE_ENV } = process.env
+
 const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1)
 
@@ -15,7 +18,7 @@ console.log(`
 #+#    #+# #+#        #+#    #+#    #+#     #+#   #+#+# #+#    #+# #+#    #+#
  ########  ###         ########     ###     ###    #### #########  ###    ###
 
-==============================  v0.0.1 alpha  ===============================
+==============================  v${version}  =====================================
 `)
 debug('server')(`${capitalize(NODE_ENV)} building...`)
 
