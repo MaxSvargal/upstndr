@@ -1,6 +1,6 @@
 {
   "name": "upstndr",
-  "description": "A non-boilerplate self-contained and ready out of the box framework for develop universal web apps with the best parts of react ecosystem.",
+  "description": "The full-stack ReactJS framework. Written on TypeScript.",
   "version": "0.0.3",
   "main": "lib/index.ts",
   "author": "MaxSvargal <maxsvargal@gmail.com>",
@@ -10,7 +10,7 @@
     "prod": "NODE_ENV=production ts-node ./server"
   },
   "bin": {
-    "upstndr": "./bin/index.js"
+    "upstndr": "./bin/upstndr.ts"
   },
   "files": [
     "bin"
