@@ -11,6 +11,7 @@
     "sourceMap": true,
     "target": "es6",
     "pretty": true,
+    "declaration": true,
     "experimentalDecorators": true,
     "paths": {
       "app": [ "./app" ]

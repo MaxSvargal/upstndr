@@ -6,11 +6,10 @@
   "author": "MaxSvargal <maxsvargal@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "NODE_PATH=app NODE_ENV=development ts-node ./server",
-    "prod": "NODE_ENV=production ts-node ./server"
+    "build": "tsc"
   },
   "bin": {
-    "upstndr": "./bin/upstndr"
+    "upstndr": "./dist/bin/upstndr.js"
   },
   "dependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
