@@ -1,7 +1,7 @@
 {
   "name": "upstndr",
   "description": "The full-stack ReactJS framework. Written on TypeScript.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
   "author": "MaxSvargal <maxsvargal@gmail.com>",
@@ -13,6 +13,9 @@
   "bin": {
     "upstndr": "dist/bin/upstndr.js"
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
     "@types/debug": "^0.0.30",

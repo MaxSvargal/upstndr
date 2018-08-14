@@ -1,8 +1,8 @@
 import debug from 'debug'
 
-const { version } = require('../package.json')
+const { version } = require('../../package.json')
 
-const { NODE_ENV } = process.env
+const { NODE_ENV = 'development' } = process.env
 
 const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1)

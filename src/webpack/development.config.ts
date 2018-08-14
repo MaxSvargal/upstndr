@@ -1,13 +1,12 @@
 import path from 'path'
 import { Configuration, DefinePlugin } from 'webpack'
-import CleanWebpackPlugin from 'clean-webpack-plugin'
 
 export default <Configuration>{
   entry: [
-    path.join(__dirname, '..', 'app/index.tsx'),
+    path.join(__dirname, '..', 'app/index'),
   ],
   devtool: 'source-map',
-  mode: 'production',
+  mode: 'development',
   module: {
     rules: [
       {
@@ -35,35 +34,40 @@ export default <Configuration>{
     ]
   },
   resolve: {
-    modules: ['node_modules', path.join(process.cwd(), '/app'), './app' ],
+    modules: ['node_modules', path.join(process.cwd(), '/app'), './dist/app' ],
     extensions: [ '.tsx', '.ts', '.js', '.json' ]
   },
+  output: {
+    path: path.join(__dirname, '../dist'),
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[hash].js',
+    publicPath: '/'
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          enforce: true,
+          chunks: 'all'
+        }
+      }
+    }
+  },
+  target: 'web',
+  stats: {
+    assets: false,
+    modules: false
+  },
   plugins: [
-    new CleanWebpackPlugin([ 'dist' ], {
-      root: process.cwd(),
-      verbose: false
-    }),
     new DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV),
         BROWSER: JSON.stringify('true')
       },
     })
-  ],
-  output: {
-    path: path.join(process.cwd(), 'dist'),
-    filename: '[name].[hash].js',
-    chunkFilename: '[name].[hash].js',
-    publicPath: '/'
-  },
-  optimization: {
-    minimize: true,
-    nodeEnv: 'production',
-    sideEffects: true,
-    concatenateModules: true,
-    splitChunks: { chunks: 'all' },
-    runtimeChunk: true,
-  },
-  target: 'web'
+  ]
 }
 

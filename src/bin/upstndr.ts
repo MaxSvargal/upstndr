@@ -8,7 +8,7 @@ const fs = require('fs')
 const cwd = process.cwd()
 const tsConfigFile = 'tsconfig.json'
 const projectTsConfig = cwd + '/' + tsConfigFile
-const tsConfig = require(`../${tsConfigFile}`)
+const tsConfig = require(`../../${tsConfigFile}`)
 
 if (!fs.existsSync(projectTsConfig))
   fs.copyFileSync(`${__dirname}/../${tsConfigFile}`, cwd + `/${tsConfigFile}`)
@@ -22,4 +22,4 @@ require('ts-node').register({
   project: projectTsConfig
 })
 
-require('../server/index.ts')
+require('../server')
