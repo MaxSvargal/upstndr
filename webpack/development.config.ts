@@ -12,11 +12,9 @@ export default <Configuration>{
       {
         test: /\.tsx?$/,
         use: [ {
-          loader: 'awesome-typescript-loader',
+          loader: 'ts-loader',
           options: {
             silent: true,
-            useTranspileModule: true,
-            errorsAsWarnings: true,
             transpileOnly: true
           }
         } ],

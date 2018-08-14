@@ -1,7 +1,7 @@
 {
   "name": "upstndr",
   "description": "The full-stack ReactJS framework. Written on TypeScript.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "lib/index.ts",
   "author": "MaxSvargal <maxsvargal@gmail.com>",
   "license": "MIT",
@@ -10,11 +10,8 @@
     "prod": "NODE_ENV=production ts-node ./server"
   },
   "bin": {
-    "upstndr": "./bin/upstndr.ts"
+    "upstndr": "./bin/upstndr"
   },
-  "files": [
-    "bin"
-  ],
   "dependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
     "@types/debug": "^0.0.30",
@@ -24,7 +21,6 @@
     "@types/koa-static-cache": "^5.1.0",
     "@types/koa-webpack": "^5.0.1",
     "@types/node": "^10.5.5",
-    "@types/prop-types": "^15.5.4",
     "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.5",
@@ -33,7 +29,6 @@
     "@types/redux-saga": "^0.10.5",
     "@types/webpack": "^4.4.8",
     "@types/webpack-env": "^1.13.6",
-    "awesome-typescript-loader": "^5.2.0",
     "clean-webpack-plugin": "^0.1.19",
     "connected-react-router": "^4.3.0",
     "debug": "^3.1.0",
