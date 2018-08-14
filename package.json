@@ -1,15 +1,17 @@
 {
   "name": "upstndr",
   "description": "The full-stack ReactJS framework. Written on TypeScript.",
-  "version": "0.0.4",
-  "main": "lib/index.ts",
+  "version": "0.0.6",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
   "author": "MaxSvargal <maxsvargal@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "prepublish": "tsc",
     "build": "tsc"
   },
   "bin": {
-    "upstndr": "./dist/bin/upstndr.js"
+    "upstndr": "dist/bin/upstndr.js"
   },
   "dependencies": {
     "@types/clean-webpack-plugin": "^0.1.2",
@@ -24,8 +26,6 @@
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.5",
     "@types/react-router-dom": "^4.3.0",
-    "@types/redux": "^3.6.0",
-    "@types/redux-saga": "^0.10.5",
     "@types/webpack": "^4.4.8",
     "@types/webpack-env": "^1.13.6",
     "clean-webpack-plugin": "^0.1.19",
