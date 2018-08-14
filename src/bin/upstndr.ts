@@ -8,14 +8,15 @@ const fs = require('fs')
 const cwd = process.cwd()
 const tsConfigFile = 'tsconfig.json'
 const projectTsConfig = cwd + '/' + tsConfigFile
-const tsConfig = require(`../../${tsConfigFile}`)
 
 if (!fs.existsSync(projectTsConfig))
-  fs.copyFileSync(`${__dirname}/../${tsConfigFile}`, cwd + `/${tsConfigFile}`)
+  fs.copyFileSync(`${__dirname}/../../src/app/${tsConfigFile}`, projectTsConfig)
 
 require('tsconfig-paths').register({
-  baseUrl: cwd + '/app',
-  paths: tsConfig.compilerOptions.paths
+  baseUrl: cwd  + '/app',
+  paths: {
+    '/': [ cwd + '/app' ]
+  }
 })
 
 require('ts-node').register({

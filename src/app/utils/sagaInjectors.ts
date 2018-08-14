@@ -2,14 +2,14 @@ import { Store } from '../configureStore'
 
 const injectSagaFactory = (store: Store) => (
     key: string,
-    descriptor: { saga: () => Iterator<any>, mode: string },
+    descriptor: { saga: () => Iterator<any>, mode?: string },
     args: object
   ) => {
     const { saga, mode } = descriptor
     // TODO: daemon mode here
     if (!(key in store.injectedSagas)) {
       store.injectedSagas[key] = {
-        saga, mode, task: store.runSaga(saga, args),
+        saga, mode: mode || 'RESTART_ON_REMOUNT', task: store.runSaga(saga, args),
       }
     }
   }
