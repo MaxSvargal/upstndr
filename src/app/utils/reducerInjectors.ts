@@ -1,11 +1,13 @@
 import { combineReducers, Reducer } from 'redux'
 
 import { Store } from '../configureStore'
-import { routeReducer } from '../containers/App/reducers'
+import router from '../reducers/router'
+import entities from '../reducers/entities'
 
 export function createReducer(injectedReducers?: { [key: string]: Reducer }) {
   return combineReducers({
-    router: routeReducer,
+    router,
+    entities,
     ...injectedReducers,
   })
 }
@@ -16,7 +18,8 @@ export function getReducer(state: object) {
   const stateReducers = Object.keys(state).reduce((a, b) => ({ ...a, [b]: (a: any) => a || null }), {})
 
   return combineReducers({
-    router: routeReducer,
+    router,
+    entities,
     ...stateReducers
   })
 }
