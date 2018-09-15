@@ -1,8 +1,8 @@
 {
   "name": "upstndr",
   "description": "A full-stack ReactJS framework. Written on TypeScript.",
-  "version": "0.0.9",
-  "main": "dist/lib/index.ts",
+  "version": "0.0.11",
+  "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
   "author": "MaxSvargal <maxsvargal@gmail.com>",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "test": "jest"
   },
   "bin": {
-    "upstndr": "dist/bin/upstndr.ts"
+    "upstndr": "dist/bin/upstndr.js"
   },
   "files": [
     "dist",
