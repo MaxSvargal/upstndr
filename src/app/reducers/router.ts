@@ -1,9 +1,10 @@
 import { createReducer } from 'redux-act'
+import { Reducer, AnyAction } from 'redux'
 import { LOCATION_CHANGE } from 'connected-react-router'
 
 const defaultState = {
   location: null as object | null
-} as any
+}
 
 export type State = typeof defaultState
 
@@ -14,4 +15,4 @@ reducer.on(
   (state, payload: any) => ({ ...state, location: payload })
 )
 
-export default reducer
+export default reducer as Reducer<State, AnyAction>

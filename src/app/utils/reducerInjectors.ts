@@ -15,7 +15,7 @@ export function createReducer(injectedReducers?: { [key: string]: Reducer }) {
 export function getReducer(state: object) {
   // Mock reducers instantly before they will be replaced by real reducers
   // Because we don't know about server state on client side on startup
-  const stateReducers = Object.keys(state).reduce((a, b) => ({ ...a, [b]: (a: any) => a || null }), {})
+  const stateReducers = Object.keys(state).reduce((a, b) => ({ ...a, [b]: (c: any) => c || null }), {})
 
   return combineReducers({
     router,
@@ -26,7 +26,6 @@ export function getReducer(state: object) {
 
 export function injectReducerFactory(store: Store) {
   return function injectReducer(key: string, reducer: Reducer) {
-
     // Check `store.injectedReducers[key] === reducer` for hot reloading when a key is the same but a reducer is different
     if (
       Reflect.has(store.injectedReducers, key) &&

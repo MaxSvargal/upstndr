@@ -1,4 +1,5 @@
 import { createReducer } from 'redux-act'
+import { Reducer, AnyAction } from 'redux'
 import { entityFetchSuccess } from '../actions'
 
 const defaultState = {} as {
@@ -33,4 +34,4 @@ reducer.on(
   })
 )
 
-export default reducer
+export default reducer as Reducer<State, AnyAction>
