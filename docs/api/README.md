@@ -35,6 +35,7 @@ Fetch entities by HTTP(S) path, then handle it by [normalizr]('https://github.co
 
 E.g. `const defaultSchema = [ new schema.Entity(key, {}, { idAttribute: 'id' }) ]`
 
+You can use `fetchSaga` directly from injected sagas.
 
 ## Helpers
 

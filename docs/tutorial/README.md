@@ -1,6 +1,19 @@
 ## Tutorial
 
-1. Make `app/containers/App` directory. Add `index.ts` inside, it will be a root container which contains a global application functional
+upstndr use a feature-first [ducks](https://medium.freecodecamp.org/scaling-your-redux-app-with-ducks-6115955638be) approaches of structuring. It looks like:
+```
+container/
+├── actions.ts
+├── index.tsx
+├── reducers.ts
+├── sagas.ts
+├── selectors.ts
+├── tests.ts
+├── types.ts
+├── utils.ts
+```
+
+1. Make `app/containers/App` directory. Add `index.tsx` inside, it will be a root container which contains a global application functional
 
 ```jsx
 import React, { PureComponent } from 'upstndr/internals/react'
