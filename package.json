@@ -60,6 +60,7 @@
     "redux-devtools-extension": "^2.13.5",
     "redux-saga": "^0.16.0",
     "reselect": "^3.0.1",
+    "svg-url-loader": "^2.3.2",
     "ts-loader": "^4.4.2",
     "ts-node": "^7.0.0",
     "tsconfig-paths": "^3.5.0",
