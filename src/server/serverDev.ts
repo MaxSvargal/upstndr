@@ -11,8 +11,9 @@ import initApi from './middlewares/api'
 import react from './middlewares/react'
 import webpackStats from './middlewares/webpackStats'
 
-import config from '../webpack/development.config'
+import configImporter from '../webpack/importer'
 
+const config = configImporter('development.config')
 const compiler = webpack(config) as Compiler
 const app = new Koa()
 const router = new Router()
