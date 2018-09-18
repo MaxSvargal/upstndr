@@ -4,23 +4,31 @@ import { Store } from '../configureStore'
 import router from '../reducers/router'
 import entities from '../reducers/entities'
 
-export function createReducer(injectedReducers?: { [key: string]: Reducer }) {
+// Mock reducers instantly before they will be replaced by real reducers
+// Because we don't know about server state on client side on startup
+const makeReducersFromState = (state: { [key: string]: Function }) =>
+  Object.keys(state).reduce((a, b) => ({ ...a, [b]: () => state[b] }), {})
+
+export function createReducer(store: Store) {
+  const state = store.getState()
+  const stateReducers = makeReducersFromState(state)
+  const { injectedReducers } = store
+
   return combineReducers({
+    ...stateReducers,
+    ...injectedReducers,
     router,
     entities,
-    ...injectedReducers,
   })
 }
 
-export function getReducer(state: object) {
-  // Mock reducers instantly before they will be replaced by real reducers
-  // Because we don't know about server state on client side on startup
-  const stateReducers = Object.keys(state).reduce((a, b) => ({ ...a, [b]: (c: any) => c || null }), {})
+export function getReducer(state: { [key: string]: any }) {
+  const stateReducers = makeReducersFromState(state)
 
   return combineReducers({
+    ...stateReducers,
     router,
     entities,
-    ...stateReducers
   })
 }
 
@@ -33,7 +41,7 @@ export function injectReducerFactory(store: Store) {
     ) return false
 
     store.injectedReducers[key] = reducer
-    store.replaceReducer(createReducer(store.injectedReducers))
+    store.replaceReducer(createReducer(store))
   }
 }
 
