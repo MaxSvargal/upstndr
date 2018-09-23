@@ -46,8 +46,8 @@ export default (initialState: object, url = '/') => {
   store.injectedSagas = {}
 
   if (module.hot) {
-    module.hot.accept('containers/App/reducers', () => {
-      store.replaceReducer(createReducer(store.injectedReducers));
+    module.hot.accept('./', () => {
+      store.replaceReducer(createReducer(store))
     })
   }
 
