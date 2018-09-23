@@ -13,6 +13,8 @@ import webpackStats from './middlewares/webpackStats'
 
 import configImporter from '../webpack/importer'
 
+const { PORT = 3000 } = process.env
+
 const config = configImporter('development.config')
 const compiler = webpack(config) as Compiler
 const app = new Koa()
@@ -28,9 +30,9 @@ const initKoaServer = (koaWebpackMiddleware: Middleware) => {
     .use(koaWebpackMiddleware)
     .use(webpackStats())
     .use(react)
-    .listen(3000)
+    .listen(PORT)
 
-    debug('server')('Ready. Listen on http://localhost:3000')
+    debug('server')(`Ready. Listen on http://localhost:${PORT}`)
 }
 
 koaWebpack(<Options>{

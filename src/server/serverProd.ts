@@ -12,6 +12,8 @@ import webpackStats from './middlewares/webpackStats'
 
 import configImporter from '../webpack/importer'
 
+const { PORT = 3000 } = process.env
+
 const config = configImporter('production.config')
 const app = new Koa()
 const router = new Router()
@@ -26,7 +28,7 @@ webpack(config, (err: Error, stats: Stats) => {
     .use(json())
     .use(webpackStats(stats))
     .use(react)
-    .listen(3000)
+    .listen(PORT)
 
-  debug('server')('Ready. Listen on http://localhost:3000')
+  debug('server')(`Ready. Listen on http://localhost:${PORT}`)
 })
